@@ -14,6 +14,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { isEmpty } from "lodash";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
+import { getImageUrl } from "@/lib/utils";
 
 type CreatePageProps = {};
 
@@ -116,7 +117,7 @@ const CreatePage: React.FC<CreatePageProps> = () => {
 
             {imageA && (
               <Image
-                src={`${process.env.NEXT_PUBLIC_CONVEX_URL}/api/storage/${imageA}`}
+                src={getImageUrl(imageA)}
                 alt="test image A"
                 width={200}
                 height={200}
@@ -151,7 +152,7 @@ const CreatePage: React.FC<CreatePageProps> = () => {
 
             {imageB && (
               <Image
-                src={`${process.env.NEXT_PUBLIC_CONVEX_URL}/api/storage/${imageB}`}
+                src={getImageUrl(imageB)}
                 alt="test image B"
                 width={200}
                 height={200}

@@ -24,7 +24,7 @@ export default function RootLayout({
           <Toaster />
           <Header />
 
-          <div className="container min-h-screen pt-12">{children}</div>
+          <div className="container min-h-screen pt-10">{children}</div>
         </Providers>
       </body>
     </html>
