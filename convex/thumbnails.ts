@@ -1,5 +1,6 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
+import { paginationOptsValidator } from "convex/server";
 
 export const createThumbnail = mutation({
   args: {
@@ -45,9 +46,12 @@ export const getThumbnailsForUser = query({
 });
 
 export const getThumbnails = query({
-  args: {},
+  args: { paginationOpts: paginationOptsValidator },
   handler: async (ctx, args) => {
-    return await ctx.db.query("thumbnails").order("desc").take(15);
+    return await ctx.db
+      .query("thumbnails")
+      .order("desc")
+      .paginate(args.paginationOpts);
   },
 });
 
