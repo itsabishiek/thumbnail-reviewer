@@ -5,6 +5,8 @@ export default defineSchema({
   thumbnails: defineTable({
     title: v.string(),
     userId: v.string(),
+    profileImage: v.optional(v.string()),
+    name: v.optional(v.string()),
     aImage: v.string(),
     aVotes: v.number(),
     bImage: v.string(),

@@ -16,6 +16,8 @@ export const createThumbnail = mutation({
 
     return await ctx.db.insert("thumbnails", {
       userId: user.subject,
+      name: user.name,
+      profileImage: user.pictureUrl,
       title: args.title,
       aImage: args.aImage,
       bImage: args.bImage,
@@ -39,6 +41,13 @@ export const getThumbnailsForUser = query({
       .query("thumbnails")
       .filter((q) => q.eq(q.field("userId"), user.subject))
       .collect();
+  },
+});
+
+export const getThumbnails = query({
+  args: {},
+  handler: async (ctx, args) => {
+    return await ctx.db.query("thumbnails").order("desc").take(15);
   },
 });
 
