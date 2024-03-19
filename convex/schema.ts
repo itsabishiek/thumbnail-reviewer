@@ -13,4 +13,14 @@ export default defineSchema({
     bVotes: v.number(),
     voteIds: v.array(v.string()),
   }),
+  users: defineTable({
+    userId: v.string(),
+    email: v.string(),
+    name: v.string(),
+    profileImage: v.optional(v.string()),
+    subscriptionId: v.optional(v.string()),
+    endsOn: v.optional(v.number()),
+  })
+    .index("by_userId", ["userId"])
+    .index("by_subscriptionId", ["subscriptionId"]),
 });

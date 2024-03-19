@@ -86,7 +86,7 @@ const Explore: React.FC<ExploreProps> = () => {
 
       <Button
         variant="default"
-        className="bg-blue-500 text-white hover:bg-blue-400 disabled:bg-blue-800"
+        className="mt-8 bg-blue-500 text-white hover:bg-blue-400 disabled:bg-blue-800"
         onClick={() => loadMore(5)}
         disabled={status !== "CanLoadMore"}
       >

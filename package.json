@@ -6,9 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "stripe:listen": "stripe listen --forward-to https://hearty-impala-109.convex.site/stripe",
+    "stripe:trigger": "stripe trigger payment_intent.succeeded"
   },
   "dependencies": {
+    "@clerk/clerk-sdk-node": "^4.13.11",
     "@clerk/nextjs": "^4.29.9",
     "@clerk/themes": "^1.7.9",
     "@radix-ui/react-avatar": "^1.0.4",
@@ -29,6 +32,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-dropzone": "^14.2.3",
+    "stripe": "^14.21.0",
+    "svix": "^1.21.0",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7"
   },

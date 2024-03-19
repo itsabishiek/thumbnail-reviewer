@@ -6,12 +6,26 @@ import Image from "next/image";
 import { SignInButton, UserButton, useSession } from "@clerk/nextjs";
 import { useTheme } from "next-themes";
 import { dark } from "@clerk/themes";
+import { Button } from "./ui/button";
+import { useAction, useQuery } from "convex/react";
+import { api } from "../../convex/_generated/api";
+import { useRouter } from "next/navigation";
 
 type HeaderProps = {};
 
 const Header: React.FC<HeaderProps> = () => {
+  const pay = useAction(api.stripe.pay);
+  const user = useQuery(api.users.getUser);
   const { isSignedIn } = useSession();
   const { theme } = useTheme();
+  const router = useRouter();
+
+  const handleUpgrade = async () => {
+    const url = await pay();
+    router.push(url);
+  };
+
+  const isSubscribed = user && (user.endsOn ?? 0) > Date.now();
 
   return (
     <div className="border-b">
@@ -50,6 +64,10 @@ const Header: React.FC<HeaderProps> = () => {
           <>
             {isSignedIn ? (
               <>
+                {!isSubscribed && (
+                  <Button onClick={handleUpgrade}>Upgrade</Button>
+                )}
+
                 <UserButton
                   appearance={{
                     baseTheme: theme === "dark" ? dark : undefined,
